@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario UX - PiA</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    textarea {
+      resize: vertical;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      background: black;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Formulario de Ideas UX - PiA</h2>
+
+  <form>
+    
+    <label>Nombre (opcional)</label>
+    <input type="text" name="nombre">
+
+    <label>Rol</label>
+    <select name="rol">
+      <option>Agente</option>
+      <option>Supervisor</option>
+      <option>Otro</option>
+    </select>
+
+    <label>Tipo de aporte</label>
+    <select name="tipo">
+      <option>Problema detectado</option>
+      <option>Mejora de algo existente</option>
+      <option>Idea nueva</option>
+      <option>Feedback de usuarios</option>
+    </select>
+
+    <label>¿Dónde ocurre?</label>
+    <input type="text" name="lugar" placeholder="Ej: WhatsApp, llamada, onboarding...">
+
+    <label>¿En qué momento pasa?</label>
+    <input type="text" name="momento" placeholder="Ej: primer contacto, cierre...">
+
+    <label>¿Qué está pasando?</label>
+    <textarea name="descripcion" rows="3"></textarea>
+
+    <label>Impacto</label>
+    <select name="impacto">
+      <option>Confunde al usuario</option>
+      <option>Se pierde la venta</option>
+      <option>Aumenta el tiempo</option>
+      <option>Mala experiencia</option>
+      <option>Otro</option>
+    </select>
+
+    <label>Frecuencia</label>
+    <select name="frecuencia">
+      <option>Siempre</option>
+      <option>Muy seguido</option>
+      <option>A veces</option>
+      <option>Raro</option>
+    </select>
+
+    <label>¿Cómo lo mejorarías?</label>
+    <textarea name="solucion" rows="3"></textarea>
+
+    <label>¿PiA podría resolver esto automáticamente?</label>
+    <select name="pia">
+      <option>Sí</option>
+      <option>No</option>
+      <option>Tal vez</option>
+    </select>
+
+    <label>Prioridad</label>
+    <select name="prioridad">
+      <option>Baja</option>
+      <option>Media</option>
+      <option>Alta</option>
+      <option>Crítica</option>
+    </select>
+
+    <button type="submit">Enviar</button>
+
+  </form>
+</div>
+
+</body>
+</html>
