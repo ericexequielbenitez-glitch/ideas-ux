@@ -1,130 +1,168 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Formulario UX - PiA</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f6f8;
-      margin: 0;
-      padding: 20px;
-    }
-    .container {
-      max-width: 700px;
-      margin: auto;
-      background: white;
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    h2 {
-      text-align: center;
-    }
-    label {
-      display: block;
-      margin-top: 15px;
-      font-weight: bold;
-    }
-    input, select, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
-    textarea {
-      resize: vertical;
-    }
-    button {
-      margin-top: 20px;
-      width: 100%;
-      padding: 12px;
-      border: none;
-      border-radius: 6px;
-      background: black;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    button:hover {
-      opacity: 0.9;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Feedback PiA</title>
+
+<style>
+body { font-family: Arial; background:#f4f6f8; padding:20px; }
+.container { max-width:700px; margin:auto; background:white; padding:20px; border-radius:10px; }
+.hidden { display:none; }
+button { margin-top:20px; padding:12px; width:100%; background:black; color:white; border:none; }
+</style>
 </head>
+
 <body>
 
 <div class="container">
-  <h2>Formulario de Ideas UX - PiA</h2>
 
-  <form>
-    
-    <label>Nombre (opcional)</label>
-    <input type="text" name="nombre">
+<h2>Feedback Proyecto PiA</h2>
 
-    <label>Rol</label>
-    <select name="rol">
-      <option>Agente</option>
-      <option>Supervisor</option>
-      <option>Otro</option>
-    </select>
+<form id="form">
 
-    <label>Tipo de aporte</label>
-    <select name="tipo">
-      <option>Problema detectado</option>
-      <option>Mejora de algo existente</option>
-      <option>Idea nueva</option>
-      <option>Feedback de usuarios</option>
-    </select>
+<!-- TIPO -->
+<label>¿Qué querés reportar?</label><br>
+<input type="radio" name="tipo" value="falla"> Falla
+<input type="radio" name="tipo" value="mod"> Modificación / Sugerencia
 
-    <label>¿Dónde ocurre?</label>
-    <input type="text" name="lugar" placeholder="Ej: WhatsApp, llamada, onboarding...">
+<!-- FALLA -->
+<div id="fallaSection" class="hidden">
 
-    <label>¿En qué momento pasa?</label>
-    <input type="text" name="momento" placeholder="Ej: primer contacto, cierre...">
+<label>Falla detectada</label>
+<select name="falla">
+<option>El bot no respondió más</option>
+<option>Flujo incorrecto</option>
+<option>Cerró la conversación</option>
+<option>Quedó escribiendo</option>
+</select>
 
-    <label>¿Qué está pasando?</label>
-    <textarea name="descripcion" rows="3"></textarea>
+<label>Sección</label>
+<select name="seccion">
+<option>Hogar Convergente</option>
+<option>Hogar no convergente</option>
+<option>Móvil convergente</option>
+<option>Móvil no convergente</option>
+</select>
 
-    <label>Impacto</label>
-    <select name="impacto">
-      <option>Confunde al usuario</option>
-      <option>Se pierde la venta</option>
-      <option>Aumenta el tiempo</option>
-      <option>Mala experiencia</option>
-      <option>Otro</option>
-    </select>
+<label>Impacto</label>
+<select name="impacto" multiple>
+<option>FCR</option>
+<option>NPS</option>
+<option>CCXHP</option>
+<option>AC</option>
+<option>TMO</option>
+<option>Resolución</option>
+<option>Otras</option>
+<option>Ninguna</option>
+</select>
 
-    <label>Frecuencia</label>
-    <select name="frecuencia">
-      <option>Siempre</option>
-      <option>Muy seguido</option>
-      <option>A veces</option>
-      <option>Raro</option>
-    </select>
-
-    <label>¿Cómo lo mejorarías?</label>
-    <textarea name="solucion" rows="3"></textarea>
-
-    <label>¿PiA podría resolver esto automáticamente?</label>
-    <select name="pia">
-      <option>Sí</option>
-      <option>No</option>
-      <option>Tal vez</option>
-    </select>
-
-    <label>Prioridad</label>
-    <select name="prioridad">
-      <option>Baja</option>
-      <option>Media</option>
-      <option>Alta</option>
-      <option>Crítica</option>
-    </select>
-
-    <button type="submit">Enviar</button>
-
-  </form>
 </div>
+
+<!-- MOD -->
+<div id="modSection" class="hidden">
+
+<label>Acción</label>
+<select name="accion">
+<option>Agregar opciones</option>
+<option>Agregar speech</option>
+<option>Agregar imagen</option>
+<option>Agregar enlace</option>
+<option>Eliminar opciones</option>
+<option>Eliminar speech</option>
+<option>Modificar speech</option>
+<option>Agregar videos</option>
+<option>Otros</option>
+</select>
+
+<label>Nota</label>
+<textarea name="nota" maxlength="80000"></textarea>
+
+</div>
+
+<!-- ARCHIVOS -->
+<label>Adjuntar archivos</label>
+<input type="file" id="files" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg">
+
+<button type="submit">Enviar</button>
+
+</form>
+
+<div id="loading" class="hidden">⏳ Enviando...</div>
+
+<div id="success" class="hidden">
+🤖 PiA<br><br>
+Registramos tu feedback correctamente,<br>
+trabajaremos para seguir potenciando tu experiencia 🤜🤛
+</div>
+
+</div>
+
+<script>
+
+// mostrar secciones
+document.querySelectorAll('input[name="tipo"]').forEach(r => {
+  r.addEventListener("change", e => {
+    document.getElementById("fallaSection").classList.toggle("hidden", e.target.value !== "falla");
+    document.getElementById("modSection").classList.toggle("hidden", e.target.value !== "mod");
+  });
+});
+
+// base64
+function toBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result.split(',')[1]);
+    reader.onerror = reject;
+  });
+}
+
+// submit
+document.getElementById("form").onsubmit = async (e) => {
+  e.preventDefault();
+
+  document.getElementById("loading").classList.remove("hidden");
+
+  const tipo = document.querySelector('input[name="tipo"]:checked').value;
+  const filesInput = document.getElementById("files");
+
+  let files = [];
+
+  for (let file of filesInput.files) {
+    const base64 = await toBase64(file);
+    files.push({
+      name: file.name,
+      type: file.type,
+      data: base64
+    });
+  }
+
+  let payload = {
+    tipo: tipo,
+    files: files
+  };
+
+  if (tipo === "falla") {
+    payload.falla = document.querySelector('[name="falla"]').value;
+    payload.seccion = document.querySelector('[name="seccion"]').value;
+    payload.impacto = Array.from(document.querySelector('[name="impacto"]').selectedOptions).map(o => o.value);
+  }
+
+  if (tipo === "mod") {
+    payload.accion = document.querySelector('[name="accion"]').value;
+    payload.nota = document.querySelector('[name="nota"]').value;
+  }
+
+  await fetch("PEGAR_URL_WEBAPP_ACA", {
+    method: "POST",
+    body: JSON.stringify(payload)
+  });
+
+  document.getElementById("loading").classList.add("hidden");
+  document.getElementById("success").classList.remove("hidden");
+};
+
+</script>
 
 </body>
 </html>
